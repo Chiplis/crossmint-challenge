@@ -12,8 +12,8 @@ const coinToRequest = async (coin, row, column, retries = 10) => {
 	if (coin === "SPACE") {
 		return;
 	}
-	let [modifier, property] = coin.toLowerCase().split("_");
-	[modifier, property] = [!property ? undefined : modifier, !property ? modifier : property] // POLY coin does not have any modifier, normalize coin format
+	let [modifier, symbol] = coin.toLowerCase().split("_");
+	[modifier, symbol] = [!symbol ? undefined : modifier, !symbol ? modifier : (symbol + "s")] // POLY coin does not have any modifier, normalize coin format
 	const body = JSON.stringify({
 		candidateId,
 		color: modifier, // Unused body params are ignored server side so this is safe for both types of coins
@@ -21,7 +21,7 @@ const coinToRequest = async (coin, row, column, retries = 10) => {
 		row,
 		column
 	});
-	const url = `https://challenge.crossmint.io/api/${property.toLowerCase() + 's'}`;
+	const url = `https://challenge.crossmint.io/api/${symbol}`;
 	
 	try {
 		const response = await fetch(url, {
