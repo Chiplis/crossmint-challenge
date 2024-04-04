@@ -44,7 +44,7 @@ const drawGoal = async () => {
 	let goal = await goalPromise;
 	for (let row = 0; row < goal.length; row++) {
 		for (let column = 0; column < goal.length; column++) {
-			const response = await coinToParams(goal[row][column], row, column);
+			const response = await coinToRequest(goal[row][column], row, column);
 			console.log("Response is", response);
 		}
 	}
