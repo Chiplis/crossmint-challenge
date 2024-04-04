@@ -42,6 +42,7 @@ const coinToRequest = async (coin, row, column, retries = 10) => {
 
 const drawGoal = async () => {
 	let goal = await goalPromise;
+	// Goal is always a square matrix so row and column have the same length
 	for (let row = 0; row < goal.length; row++) {
 		for (let column = 0; column < goal.length; column++) {
 			const response = await coinToRequest(goal[row][column], row, column);
